@@ -5,50 +5,18 @@ WITH REPLICATION = {
     'replication_factor' : 1
 };
 
-CREATE TABLE StockRecord (
-    datetime timestamp,
-    unit duration,
+CREATE TABLE record (
+    exchange ascii,
     symbol ascii,
-    name text,
-    volumn bigint,
-    transaction bigint,
-    value bigint,
-    open double,
-    high double,
-    low double,
-    close double,
-    change double,
-    lastBidPrice double,
-    lastBidVolume bigint,
-    lastAskPrice double,
-    lastAskVolume bigint,
-    PRIMARY KEY ((datetime, unit, symbol))
-) WITH caching={'keys':'NONE','rows_per_partition':'NONE'};
-
-CREATE TABLE OptionRecord (
+    period duration,
     datetime timestamp,
-    contract ascii,
-    contractMonth ascii,
-    strikePrice ascii,
-    callPut ascii,
-    open double,
-    high double,
-    low double,
-    close double,
-    settlementPrice double,
-    change double,
-    percent double,
-    volumnAfterHours bigint,
-    volumnRegular bigint,
-    volumnTotal bigint,
-    openInterest bigint,
-    bestBid double,
-    bestAsk double,
-    historicalHigh double,
-    historicalLow double,
-    PRIMARY KEY ((datetime, contract, contractMonth), strikePrice, callPut)
-) WITH caching={'keys':'NONE','rows_per_partition':'NONE'};
-
-
-
+    open decimal,
+    high decimal,
+    low decimal,
+    close decimal,
+    volume bigint,
+    PRIMARY KEY ((exchange, symbol, period), datetime)
+)
+WITH CLUSTERING ORDER BY (datetime ASC)
+AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
 
