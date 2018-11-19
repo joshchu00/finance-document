@@ -5,10 +5,10 @@ WITH REPLICATION = {
     'replication_factor' : 1
 };
 
-CREATE TABLE record (
+CREATE TABLE finance.record (
     exchange ascii,
     symbol ascii,
-    period duration,
+    period ascii,
     datetime timestamp,
     open decimal,
     high decimal,
