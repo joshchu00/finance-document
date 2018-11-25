@@ -1,15 +1,16 @@
 
-CREATE KEYSPACE finance
+CREATE KEYSPACE finance_prod
 WITH REPLICATION = {
     'class' : 'SimpleStrategy',
     'replication_factor' : 1
 };
 
-CREATE TABLE finance.record (
+CREATE TABLE finance_prod.record (
     exchange ascii,
     symbol ascii,
     period ascii,
     datetime timestamp,
+    name text,
     open decimal,
     high decimal,
     low decimal,
