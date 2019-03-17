@@ -26,9 +26,9 @@ CREATE TABLE finance_prod.indicator (
     symbol ascii,
     period ascii,
     datetime timestamp,
-    ma0060 decimal,
-    ma0120 decimal,
-    ma0240 decimal,
+    sma0060 decimal,
+    sma0120 decimal,
+    sma0240 decimal,
     PRIMARY KEY ((exchange, symbol, period), datetime)
 )
 WITH CLUSTERING ORDER BY (datetime ASC)
@@ -46,7 +46,7 @@ CREATE TABLE finance_prod.attention (
     symbol ascii,
     period ascii,
     datetime timestamp,
-    lma text,
+    lsma text,
     PRIMARY KEY ((exchange, symbol, period), datetime)
 )
 WITH CLUSTERING ORDER BY (datetime ASC)
