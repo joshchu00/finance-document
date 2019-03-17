@@ -25,23 +25,29 @@ CREATE TABLE finance_prod.indicator (
     exchange ascii,
     symbol ascii,
     period ascii,
-    type ascii,
-    parameter int,
     datetime timestamp,
-    value decimal,
-    PRIMARY KEY ((exchange, symbol, period, type, parameter), datetime)
+    ma0060 decimal,
+    ma0120 decimal,
+    ma0240 decimal,
+    PRIMARY KEY ((exchange, symbol, period), datetime)
 )
 WITH CLUSTERING ORDER BY (datetime ASC)
 AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
+
+CREATE TABLE finance_prod.strategy (
+    name ascii,
+    description text,
+    PRIMARY KEY (name)
+)
+WITH caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
 
 CREATE TABLE finance_prod.attention (
     exchange ascii,
     symbol ascii,
     period ascii,
-    strategy ascii,
     datetime timestamp,
-    content text,
-    PRIMARY KEY ((exchange, symbol, period, strategy), datetime)
+    lma text,
+    PRIMARY KEY ((exchange, symbol, period), datetime)
 )
 WITH CLUSTERING ORDER BY (datetime ASC)
 AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
