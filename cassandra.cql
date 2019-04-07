@@ -35,13 +35,6 @@ WITH CLUSTERING ORDER BY (datetime ASC)
 AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
 
 CREATE TABLE finance_prod.strategy (
-    name ascii,
-    description text,
-    PRIMARY KEY (name)
-)
-WITH caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
-
-CREATE TABLE finance_prod.attention (
     exchange ascii,
     symbol ascii,
     period ascii,
