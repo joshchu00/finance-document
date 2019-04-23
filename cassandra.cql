@@ -5,7 +5,14 @@ WITH REPLICATION = {
     'replication_factor' : 1
 };
 
-CREATE TABLE finance_prod.record (
+CREATE TABLE setting (
+    name ascii,
+    value ascii,
+    PRIMARY KEY (name)
+)
+WITH caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
+
+CREATE TABLE record (
     exchange ascii,
     symbol ascii,
     period ascii,
@@ -21,11 +28,15 @@ CREATE TABLE finance_prod.record (
 WITH CLUSTERING ORDER BY (datetime ASC)
 AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
 
-CREATE TABLE finance_prod.indicator (
+CREATE TABLE indicator (
     exchange ascii,
     symbol ascii,
     period ascii,
     datetime timestamp,
+    name text,
+    sma0005 decimal,
+    sma0010 decimal,
+    sma0020 decimal,
     sma0060 decimal,
     sma0120 decimal,
     sma0240 decimal,
@@ -34,11 +45,13 @@ CREATE TABLE finance_prod.indicator (
 WITH CLUSTERING ORDER BY (datetime ASC)
 AND caching = {'keys' : 'NONE', 'rows_per_partition' : 'NONE'};
 
-CREATE TABLE finance_prod.strategy (
+CREATE TABLE strategy (
     exchange ascii,
     symbol ascii,
     period ascii,
     datetime timestamp,
+    name text,
+    ssma text,
     lsma text,
     PRIMARY KEY ((exchange, symbol, period), datetime)
 )
