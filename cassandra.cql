@@ -5,6 +5,8 @@ WITH REPLICATION = {
     'replication_factor' : 1
 };
 
+USE finance_prod;
+
 CREATE TABLE setting (
     name ascii,
     value ascii,
